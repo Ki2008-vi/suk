@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Global Production - Premium Event Vendor</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- LIBRARIES -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="manualSlide(0)">GLOBAL<span>PRODUCTION</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item"><a class="nav-link fw-bold" onclick="manualSlide(0)">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" onclick="manualSlide(1)">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" onclick="manualSlide(2)">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" onclick="manualSlide(3)">Kontak</a></li>
+                    <li class="nav-item mt-2 mt-lg-0 ms-lg-3">
+                        <a href="https://wa.me/+628234221967?text=Halo%20Global%20Production%20Ponorogo%2C%20Saya%20ingin%20bertanya%20tentang%20layanan%3A%0A%0A-%20Sound%20System%0A-%20Syuting%0A-%20Multimedia%0A-%20Event%20Organizer%0A-%20Lighting%0A-%20Stage%0A-%20Rigging%0A-%20Panggung" class="btn btn-aesthetic">Booking Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SLIDER CONTAINER -->
+    <div class="slider-container" id="sliderContainer">
+        
+        <!-- SLIDE 1: HERO (FULL SCREEN MARQUEE) -->
+<div class="slide" id="slide-0">
+    
+    <!-- 1. MARQUEE ATAS (FULL WIDTH) -->
+    <div class="marquee-full-top">
+        <div class="marquee-content-full">
+            GLOBAL PRODUCTION EST. 2026 • PONOROGO'S FINEST • BOOKING OPEN • HIGH END AUDIO SYSTEM • GLOBAL PRODUCTION EST. 2026 • PONOROGO'S FINEST • BOOKING OPEN •
+        </div>
+    </div>
+
+    <!-- KONTEN TENGAH -->
+    <div class="container h-100 d-flex align-items-center" style="position: relative; z-index: 2;">
+        <div class="row w-100 align-items-center">
+            
+            <!-- KOLOM KIRI: TEKS -->
+            <div class="col-lg-6 hero-content">
+                <span class="section-tag" style="background: var(--accent-yellow); color: #000; margin-bottom: 20px; display: inline-block; padding: 5px 15px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; border-radius: 50px;">Vendor Event Terpercaya</span>
+                
+                <h1 class="display-3 fw-bold" style="font-family: var(--font-heading); color: var(--accent-black); line-height: 1.1;">
+                    Event <br>
+                    <span style="font-style:italic; color:var(--accent-yellow)">Estetik</span> & <br>
+                    Profesional.
+                </h1>
+                
+                <p class="lead text-muted" style="max-width: 500px; margin-bottom: 30px;">
+                    Kami menghadirkan standar produksi global ke panggung lokal. Sound system jernih, lighting sinematik, dan panggung kokoh.
+                </p>
+                
+                <div class="d-flex gap-3 mb-4">
+                    <button onclick="manualSlide(1)" class="btn btn-aesthetic shadow">Lihat Layanan</button>
+                    <button onclick="manualSlide(2)" class="btn btn-outline-aesthetic">Portfolio</button>
+                </div>
+
+                <!-- Gallery Scroll Hanya untuk HP (Mobile) -->
+                <div class="col-12 d-lg-none mt-4">
+                    <p class="small text-muted fw-bold mb-2 text-uppercase">Latest Works</p>
+                    <div class="mobile-hero-scroll">
+                        <div class="mobile-scroll-item">
+                            <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1974&auto=format&fit=crop" alt="Concert">
+                            <div class="img-label">Live Music</div>
+                        </div>
+                        <div class="mobile-scroll-item">
+                            <img src="https://images.unsplash.com/photo-1505373877841-8d43f703fb64?q=80&w=2070&auto=format&fit=crop" alt="Stage">
+                            <div class="img-label">Stage Build</div>
+                        </div>
+                        <div class="mobile-scroll-item">
+                            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop" alt="Lighting">
+                            <div class="img-label">Lighting</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KOLOM KANAN: DESKTOP GALLERY -->
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="hero-gallery-wrapper">
+                    <!-- Gambar Utama -->
+                    <div class="hero-img-card h-img-main">
+                        <img src="assets/images/4.jpg" alt="Concert Crowd">
+                        <div class="img-label">Festival Live</div>
+                    </div>
+                    
+                    <!-- Gambar Kecil Bawah Kiri -->
+                    <div class="hero-img-card h-img-sub-1">
+                        <img src="assets/images/5.jpg" alt="DJ Equipment">
+                        <div class="img-label">Sound System</div>
+                    </div>
+                    
+                    <!-- Gambar Kecil Bawah Tengah -->
+                    <div class="hero-img-card h-img-sub-2">
+                        <img src="assets/images/3.jpg" alt="Stage Lights">
+                        <div class="img-label" style="background:var(--accent-yellow)">Stage Rigging</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 2. MARQUEE BAWAH (FULL WIDTH) -->
+    <div class="marquee-full-bottom">
+        <div class="marquee-content-full">
+            CREATIVE STAGE CONCEPT • PROFESSIONAL TEAM • WORLD CLASS EQUIPMENT • WHATSAPP 0812-3422-1967 • CREATIVE STAGE CONCEPT • PROFESSIONAL TEAM • WORLD CLASS EQUIPMENT •
+        </div>
+    </div>
+
+</div>
+
+        <!-- SLIDE 2: SERVICES (REFINED) -->
+        <div class="slide" id="slide-1">
+            <!-- Hapus py-5, ganti dengan h-100 d-flex flex-column agar muat layar -->
+<div class="container h-100 d-flex flex-column">
+                <div class="services-header animate__animated animate__fadeIn">
+                    <span class="section-tag">Layanan Kita</span>
+                    <h2 class="section-title">Solusi Produksi Premium</h2>
+                </div>
+
+                <!-- Grid dengan gap g-3 (Jarak pas) -->
+                <div class="row g-3">
+                    <!-- Item 1 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="service-card" onclick="openModal('Sound System', 'Audio berdaya tinggi dengan kejernihan frekuensi yang presisi.')">
+                            <div class="service-icon-box"><i class="fas fa-music"></i></div>
+                            <h3 class="service-title">Sound System</h3>
+                            <p class="service-desc">Audio jernih & bass nendang untuk konser hingga seminar.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="service-card" onclick="openModal('Lighting Design', 'Tata cahaya dramatis dengan Moving Head dan Par LED.')">
+                            <div class="service-icon-box"><i class="fas fa-lightbulb"></i></div>
+                            <h3 class="service-title">Lighting Design</h3>
+                            <p class="service-desc">Mengubah panggung biasa menjadi visual sinematik.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="service-card" onclick="openModal('Multimedia', 'LED Screen Indoor/Outdoor dan Video Mapping.')">
+                            <div class="service-icon-box"><i class="fas fa-layer-group"></i></div>
+                            <h3 class="service-title">Multimedia</h3>
+                            <p class="service-desc">LED Screen P2.5 & Visual memukau.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="service-card" onclick="openModal('Stage & Rigging', 'Panggung modular dan sistem Rigging Truss Aluminium.')">
+                            <div class="service-icon-box"><i class="fas fa-cubes"></i></div>
+                            <h3 class="service-title">Stage & Rigging</h3>
+                            <p class="service-desc">Struktur kokoh berstandar keamanan tinggi.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="service-card" onclick="openModal('Production Syuting', 'Dokumentasi Cinematic 4K dan Live Streaming.')">
+                            <div class="service-icon-box"><i class="fas fa-video"></i></div>
+                            <h3 class="service-title">Production Syuting</h3>
+                            <p class="service-desc">Dokumentasi sinema & live streaming.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="service-card" onclick="openModal('Event Organizer', 'Total event management dari konsep hingga eksekusi.')">
+                            <div class="service-icon-box"><i class="fas fa-wand-magic-sparkles"></i></div>
+                            <h3 class="service-title">Event Organizer</h3>
+                            <p class="service-desc">Kami urus semua detail acara Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: GALLERY -->
+        <div class="slide" id="slide-2"> 
+            <div class="container h-100 d-flex flex-column">
+                <div class="services-header animate__animated animate__fadeIn" style="padding-top: 40px;">
+                    <span class="section-tag">Portfolio</span>
+                    <h2 class="section-title">Dokumentasi Event</h2>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="assets/images/10 (1).png" alt="Concert">
+                        <div class="gallery-overlay">
+                            <h5>Live Concert</h5>
+                            <p>Sound & Light</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=crop" alt="Party">
+                        <div class="gallery-overlay">
+                            <h5>Private Party</h5>
+                            <p>Full Production</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/11.png" alt="Stage">
+                        <div class="gallery-overlay">
+                            <h5>Festival Stage</h5>
+                            <p>Structure & Rigging</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/6.png" alt="DJ">
+                        <div class="gallery-overlay">
+                            <h5>DW Performance</h5>
+                            <p>Audio System</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop" alt="Wedding">
+                        <div class="gallery-overlay">
+                            <h5>Wedding Expo</h5>
+                            <p>Decoration & LED</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1974&auto=format&fit=crop" alt="Crowd">
+                        <div class="gallery-overlay">
+                            <h5>Corporate Event</h5>
+                            <p>Multimedia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: FOOTER (BENTO STYLE) -->
+                <!-- SLIDE 4: FOOTER (NEW LAYOUT) -->
+        <div class="slide" id="slide-3">
+            <footer class="main-footer">
+                
+                <!-- Container Utama -->
+                <div class="footer-container">
+                    <div class="footer-grid-new">
+                        
+                        <!-- 1. KOLOM KIRI: LOGO & SOCIAL (FULL VERTICAL) -->
+                        <div class="footer-brand-box">
+                            <div>
+                                <div class="footer-logo-text">
+                                    GLOBAL<br><span>PRODUCTION</span>
+                                </div>
+                                <p class="footer-desc">
+                                    Mitra strategis untuk kebutuhan event Anda. Kami menggabungkan teknologi audio-visual terkini dengan seni pertunjukan untuk menciptakan pengalaman yang tak terlupakan.
+                                </p>
+                            </div>
+                            
+                            <!-- Social Media -->
+                            <div>
+                                <p style="font-weight:700; font-size:0.8rem; text-transform:uppercase; color:#666; margin-bottom:15px;">Follow Us</p>
+                                <div class="social-circle-new">
+                                    <a href="https://www.instagram.com/globalaudio_ponorogo/" class="social-btn-new"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://www.youtube.com/@globalproduction8005" class="social-btn-new"><i class="fab fa-youtube"></i></a>
+                                    <a href="https://www.tiktok.com/@globalaudioponorogoreal" class="social-btn-new"><i class="fab fa-tiktok"></i></a>
+                                    <a href="https://web.facebook.com/profile.php?id=100064192412995" class="social-btn-new"><i class="fab fa-facebook-f"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. KOLOM TENGAH: MENU CEPAT -->
+                        <div class="footer-menu-box">
+                            <h5>Menu Cepat</h5>
+                            <ul class="footer-list">
+                                <li><a href="#" onclick="manualSlide(0)">Beranda <i class="fas fa-arrow-right"></i></a></li>
+                                <li><a href="#" onclick="manualSlide(1)">Layanan Kami <i class="fas fa-arrow-right"></i></a></li>
+                                <li><a href="#" onclick="manualSlide(2)">Portfolio <i class="fas fa-arrow-right"></i></a></li>
+                                <li><a href="https://wa.me/081234221967">Hubungi Kami <i class="fas fa-arrow-right"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <!-- 3. KOLOM KANAN ATAS: KONTAK INFO -->
+                        <div class="footer-contact-box">
+                            <h5>Hubungi Kami</h5>
+                            
+                            <div class="contact-info-row">
+                                <div class="icon-box-small"><i class="fas fa-map-marker-alt"></i></div>
+                                <div>
+                                    <small style="display:block; color:#666; font-size:0.75rem;">Alamat</small>
+                                    <span>Karanggebang, Jetis, Ponorogo</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-row">
+                                <div class="icon-box-small"><i class="fas fa-phone-alt"></i></div>
+                                <div>
+                                    <small style="display:block; color:#666; font-size:0.75rem;">Telepon</small>
+                                    <span>+62 812-3422-1967</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-row">
+                                <div class="icon-box-small"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <small style="display:block; color:#666; font-size:0.75rem;">Email</small>
+                                    <span>info@globalproduction.id</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. KOLOM KANAN ATAS LANJUTAN: LAYANAN POPULER -->
+                        <div class="footer-menu-box" style="margin-top: 0;">
+                            <h5>Layanan</h5>
+                            <ul class="footer-list">
+                                <li><a href="#" onclick="openModal('Sound', 'Desc')">Sound System <i class="fas fa-arrow-right"></i></a></li>
+                                <li><a href="#" onclick="openModal('Light', 'Desc')">Stage Lighting <i class="fas fa-arrow-right"></i></a></li>
+                                <li><a href="#" onclick="openModal('Rig', 'Desc')">Truss System <i class="fas fa-arrow-right"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <!-- 5. BAWAH MELEBAR: MAP BESAR -->
+                        <div class="footer-map-wide">
+                            <div class="map-overlay-label">Lokasi Workshop</div>
+                            <!-- Google Maps Embed -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.57461384212!2d111.4887810750884!3d-7.9394162920846325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e790b0047696b81%3A0xda7f0af71aa4e4f6!2sGLOBAL%20PRODUCTION!5e0!3m2!1sid!2sid!4v1770085508322!5m2!1sid!2sid" loading="lazy"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Running Text Footer -->
+                <div class="footer-marquee-bottom">
+                    <div class="marquee-content">
+                        GLOBAL PRODUCTION PONOROGO • EVENT SPECIALIST • CREATIVE • INNOVATIVE • BOOKING NOW • GLOBAL PRODUCTION PONOROGO •
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="slider-controls">
+        <button class="ctrl-btn" onclick="toggleAuto()" id="autoBtn"><i class="fas fa-pause"></i></button>
+        <div class="dots-container">
+            <div class="dot active" onclick="manualSlide(0)"></div>
+            <div class="dot" onclick="manualSlide(1)"></div>
+            <div class="dot" onclick="manualSlide(2)"></div>
+            <div class="dot" onclick="manualSlide(3)"></div>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="ctrl-btn" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+            <button class="ctrl-btn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/+628234221967?text=Halo%20Global%20Production%20Ponorogo%2C%20Saya%20ingin%20bertanya%20tentang%20layanan%3A%0A%0A-%20Sound%20System%0A-%20Syuting%0A-%20Multimedia%0A-%20Event%20Organizer%0A-%20Lighting%0A-%20Stage%0A-%20Rigging%0A-%20Panggung" class="wa-float">
+        <i class="fab fa-whatsapp" style="text-decoration-line: none;"></i>
+    </a>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h3 class="modal-title fw-bold" id="modalTitle">Service Name</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalDesc" class="text-muted">Description goes here.</p>
+                    <div class="bg-light p-3 rounded mt-4">
+                        <small class="fw-bold text-uppercase text-dark d-block mb-2">Why Choose Us?</small>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-check-circle text-warning me-2"></i> <span>Peralatan Original & Terawat</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-check-circle text-warning me-2"></i> <span>Tim Teknisi Berpengalaman</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-warning me-2"></i> <span>Harga Kompetitif & Transparan</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-light rounded-pill" data-bs-dismiss="modal">Tutup</button>
+                    <a href="https://wa.me/+628234221967?text=Halo%20Global%20Production%20Ponorogo%2C%20Saya%20ingin%20bertanya%20tentang%20layanan%3A%0A%0A-%20Sound%20System%0A-%20Syuting%0A-%20Multimedia%0A-%20Event%20Organizer%0A-%20Lighting%0A-%20Stage%0A-%20Rigging%0A-%20Panggung" class="btn btn-aesthetic rounded-pill px-4">Tanya via WA</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

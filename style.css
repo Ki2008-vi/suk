@@ -1,0 +1,842 @@
+/* --- CSS VARIABLES (Yellow & Black Theme) --- */
+        :root {
+            --bg-body: #F4F4F4;
+            --bg-card: #FFFFFF;
+            --text-main: #111111;
+            --text-muted: #888888;
+            
+            --accent-yellow: #FFD600;
+            --accent-black: #0a0a0a;
+            --accent-dark-gray: #1a1a1a;
+            
+            --border-radius: 12px;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            margin: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: 0.3s;
+        }
+        
+        .navbar-brand {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--accent-black) !important;
+            letter-spacing: -0.5px;
+        }
+        .navbar-brand span { color: var(--accent-yellow); }
+
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #fff;
+                padding: 20px;
+                border-bottom: 5px solid var(--accent-yellow);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                margin-top: 10px;
+            }
+            .navbar-nav { gap: 15px; }
+            .nav-link { font-size: 1.1rem; padding: 10px 0 !important; }
+            .btn-aesthetic { width: 100%; text-align: center; }
+        }
+
+        .nav-link.fw-bold { color: var(--accent-black); }
+        .nav-link.fw-bold:hover { color: var(--accent-yellow); }
+
+        /* --- BUTTONS --- */
+        .btn-aesthetic {
+            background-color: var(--accent-yellow);
+            color: var(--accent-black);
+            font-weight: 700;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .btn-aesthetic:hover {
+            background-color: var(--accent-black);
+            color: var(--accent-yellow);
+            transform: translateY(-2px);
+        }
+        .btn-outline-aesthetic {
+            background: transparent;
+            border: 2px solid var(--accent-black);
+            color: var(--accent-black);
+            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .btn-outline-aesthetic:hover {
+            background: var(--accent-black);
+            color: #fff;
+        }
+
+        /* --- MARQUEE --- */
+        .marquee-container {
+            background: var(--accent-black);
+            color: #fff;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
+        /* --- SLIDER --- */
+        .slider-container {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            width: 100%;
+            height: 100vh;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+        .slider-container::-webkit-scrollbar { display: none; }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            scroll-snap-align: start;
+            position: relative;
+            overflow-y: auto;
+            height: 100%;
+            padding-top: 80px; /* Space for Navbar */
+            box-sizing: border-box;
+        }
+
+        /* --- HERO SECTION --- */
+        #slide-0 {
+            /* Parallax Background */
+            background-image: linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0.2) 100%),
+                              url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--accent-black);
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* --- REFINED SERVICES (BENTO STYLE) --- */
+        .services-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-tag {
+            background: var(--accent-yellow);
+            color: #000;
+            padding: 5px 15px;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-black);
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 40px 30px;
+            height: 100%; /* Equal height */
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            cursor: pointer;
+        }
+
+        /* Decorative Border Top */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 4px;
+            background: var(--accent-yellow);
+            transition: 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: transparent;
+        }
+
+        .service-card:hover::before {
+            width: 100%;
+        }
+
+        /* Icon Styling - New Look */
+        .service-icon-box {
+            width: 70px;
+            height: 70px;
+            background: var(--accent-black);
+            border-radius: 12px; /* Squircle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            transition: 0.4s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-icon-box i {
+            font-size: 1.8rem;
+            color: var(--accent-yellow);
+            transition: 0.4s;
+        }
+
+        /* Icon Hover Effect */
+        .service-card:hover .service-icon-box {
+            background: var(--accent-yellow);
+            transform: rotate(-5deg) scale(1.1);
+        }
+        .service-card:hover .service-icon-box i {
+            color: var(--accent-black);
+        }
+
+        .service-title {
+            font-weight: 700;
+            font-size: 1.35rem;
+            margin-bottom: 15px;
+            color: var(--accent-black);
+            transition: 0.3s;
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Pushes button to bottom */
+        }
+
+        .service-link {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .service-card:hover .service-link {
+            color: var(--accent-black);
+        }
+        .service-card:hover .service-link i {
+            transform: translateX(5px);
+        }
+
+        /* --- GALLERY SECTION (Minimalist) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #fff;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+
+        /* =========================================
+   CSS FOOTER BENTO (MAP LEBAR & LOGO)
+   ========================================= */
+
+.main-footer {
+    background-color: var(--accent-black);
+    color: #fff;
+    border-top: 6px solid var(--accent-yellow);
+    padding-bottom: 0;
+    position: relative;
+}
+
+/* Container Footer */
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 30px 0 30px; /* Padding atas, kiri kanan */
+}
+
+/* Grid Layout Bento (4 Kolom) */
+.footer-grid-new {
+    display: grid;
+    grid-template-columns: 320px 1fr 1fr 1fr; /* Kolom 1 fix, lainnya fleksibel */
+    grid-template-rows: auto 280px; /* Baris atas auto, Baris bawah (Map) tinggi 280px */
+    gap: 30px;
+    align-items: start;
+}
+
+/* 1. Box Kiri: Logo & Social (Memanjang Full Vertikal) */
+.footer-brand-box {
+    grid-row: 1 / 3; /* Dari baris 1 sampai 3 (Penuh) */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-logo-text {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+.footer-logo-text span { color: var(--accent-yellow); }
+
+.footer-desc {
+    font-size: 0.95rem;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Social Media Style */
+.social-circle-new {
+    display: flex;
+    gap: 15px;
+}
+.social-btn-new {
+    width: 50px; height: 50px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 1.2rem;
+}
+.social-btn-new:hover {
+    background: var(--accent-yellow);
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 214, 0, 0.3);
+}
+
+/* 2. Box Menu & Kontak (Top Right) */
+.footer-menu-box h5, .footer-contact-box h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #222;
+    color: #fff;
+}
+
+/* List Style */
+.footer-list { list-style: none; padding: 0; margin: 0; }
+.footer-list li { margin-bottom: 12px; }
+.footer-list a {
+    color: #aaa; text-decoration: none;
+    font-size: 0.95rem; transition: 0.3s;
+    display: flex; justify-content: space-between;
+}
+.footer-list a:hover { color: var(--accent-yellow); padding-left: 5px; }
+
+/* Contact Text Style */
+.contact-info-row {
+    display: flex; align-items: flex-start; margin-bottom: 15px; color: #aaa;
+}
+.icon-box-small {
+    width: 35px; height: 35px; background: #1a1a1a; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-right: 15px; color: var(--accent-yellow); flex-shrink: 0;
+}
+
+/* 3. Box Map (Bottom - Lebar) */
+.footer-map-wide {
+    grid-column: 2 / 5; /* Mulai dari kolom 2 sampai akhir (Mencakup Menu, Layanan, Kontak) */
+    grid-row: 2 / 3;    /* Baris ke 2 */
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid #222;
+    position: relative;
+}
+
+.footer-map-wide iframe {
+    width: 100%; height: 100%; border: 0;
+    /* Filter Map Agar Keren (Grayscale) */
+    filter: grayscale(100%) invert(92%) contrast(90%);
+    transition: 0.5s;
+}
+.footer-map-wide:hover iframe {
+    filter: grayscale(0%) invert(0%) contrast(100%); /* Berwarna saat hover */
+}
+
+/* Overlay Kecil di Map */
+.map-overlay-label {
+    position: absolute; top: 20px; left: 20px;
+    background: rgba(0,0,0,0.8); color: #fff;
+    padding: 8px 15px; border-radius: 4px;
+    font-weight: 700; font-size: 0.8rem; text-transform: uppercase;
+    z-index: 2; border-left: 4px solid var(--accent-yellow);
+}
+
+/* Footer Running Text (Marquee) */
+.footer-marquee-bottom {
+    background: var(--accent-yellow); color: #000; padding: 15px 0; overflow: hidden;
+    white-space: nowrap; font-weight: 900; font-size: 1.2rem; text-transform: uppercase;
+    margin-top: 30px;
+}
+
+/* Responsive Mobile */
+@media (max-width: 991px) {
+    .footer-grid-new {
+        grid-template-columns: 1fr; /* Stack Vertikal */
+        grid-template-rows: auto; /* Tinggi otomatis */
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+    .footer-brand-box { grid-row: auto; }
+    .footer-map-wide { grid-column: 1 / -1; height: 250px; } /* Map full width di HP */
+    .footer-logo-text { font-size: 1.8rem; }
+}
+        /* --- UI CONTROLS --- */
+        .slider-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .ctrl-btn {
+            width: 50px; height: 50px;
+            background: #fff;
+            border: 2px solid var(--accent-black);
+            color: var(--accent-black);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.2s;
+        }
+        .ctrl-btn:hover { background: var(--accent-yellow); border-color: var(--accent-yellow); }
+        .dots-container { display: flex; gap: 8px; background: rgba(255,255,255,0.8); padding: 8px 15px; border-radius: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .dot { width: 10px; height: 10px; background: #ccc; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .dot.active { background: var(--accent-black); transform: scale(1.2); }
+
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25D366;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff;
+            font-size: 1.8rem;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: 0.3s;
+        }
+        .wa-float:hover { transform: scale(1.1) rotate(10deg); }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 991px) {
+            .hero-content h1 { font-size: 3rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .slider-controls { bottom: 20px; right: 20px; transform: scale(0.9); }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 767px) {
+            .hero-content { text-align: center; padding-top: 40px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { margin: 0 auto 30px auto; }
+            
+            /* Services Stack */
+            .col-lg-4.col-md-6 { width: 100%; max-width: 100%; flex: 0 0 100%; }
+            
+            /* Footer Stack */
+            .footer-grid { grid-template-columns: 1fr; padding-bottom: 80px; }
+            
+            /* Controls Mobile */
+            .slider-controls {
+                bottom: 15px; left: 50%; right: auto; transform: translateX(-50%);
+                width: 90%; justify-content: space-between; background: #fff; padding: 10px; border-radius: 50px;
+            }
+            .wa-float { width: 50px; height: 50px; bottom: 85px; left: 20px; font-size: 1.5rem; }
+            .dots-container { background: transparent; box-shadow: none; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+/* =========================================
+   UPDATE CSS: FULL SCREEN MARQUEE (ATAS & BAWAH)
+   ========================================= */
+
+/* Wrapper agar slide memiliki posisi relatif untuk elemen absolut */
+#slide-0 {
+    position: relative;
+}
+
+/* Marquee Atas (Full Width) */
+.marquee-full-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--accent-black);
+    color: var(--accent-yellow);
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 5; /* Di atas background */
+    border-bottom: 2px solid var(--accent-yellow);
+}
+
+/* Marquee Bawah (Full Width) */
+.marquee-full-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--accent-yellow);
+    color: var(--accent-black);
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 5;
+    border-top: 2px solid #000;
+}
+
+/* Animasi Marquee */
+.marquee-content-full {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+}
+
+/* Hapus marquee lama jika masih ada di CSS */
+.hero-top-marquee { display: none; }
+
+        /* B. Hero Gallery Wrapper (Desktop - Layout Bento) */
+        .hero-gallery-wrapper {
+            position: relative;
+            height: 500px; /* Tinggi area gambar */
+            perspective: 1000px;
+        }
+
+        .hero-img-card {
+            position: absolute;
+            overflow: hidden;
+            border-radius: 16px;
+            transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .hero-img-card:hover {
+            z-index: 10; 
+            transform: scale(1.03);
+            border-color: var(--accent-yellow);
+        }
+
+        .hero-img-card img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        /* Posisi Gambar Desktop */
+        .h-img-main {
+            width: 70%;
+            height: 60%;
+            top: 0; right: 0;
+            z-index: 1;
+        }
+
+        .h-img-sub-1 {
+            width: 40%;
+            height: 40%;
+            bottom: 0; left: 0;
+            z-index: 2;
+        }
+
+        .h-img-sub-2 {
+            width: 35%;
+            height: 40%;
+            bottom: 0; left: 42%;
+            z-index: 1;
+            border-radius: 16px 0 16px 0;
+        }
+
+        /* Label pada gambar */
+        .img-label {
+            position: absolute;
+            bottom: 10px; left: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #000;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        /* C. Mobile Scroll Gallery (Hanya HP) */
+        .mobile-hero-scroll {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 5px 20px 5px;
+            scroll-snap-type: x mandatory;
+        }
+        .mobile-hero-scroll::-webkit-scrollbar { height: 4px; }
+        .mobile-hero-scroll::-webkit-scrollbar-thumb { background: #000; border-radius: 10px; }
+
+        .mobile-scroll-item {
+            flex: 0 0 240px;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            scroll-snap-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Logic */
+        @media (max-width: 991px) {
+            /* Sembunyikan galeri desktop di HP/Tablet */
+            .hero-gallery-wrapper { display: none; }
+        }
+
+        @media (min-width: 992px) {
+            /* Sembunyikan scroll mobile di Desktop */
+            .mobile-hero-scroll { display: none; }
+        }
+        /* =========================================
+   CSS PERFECT FIT (TIDAK SCROLL, TIDAK KECIL)
+   ========================================= */
+
+/* 1. Atur Slide Layanan agar Fixed Tinggi Layar */
+        #slide-1 {
+            padding-top: 70px !important; /* Sesuaikan tinggi navbar */
+            padding-bottom: 0 !important;
+            overflow: hidden !important; /* Hilangkan scroll */
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100vh !important; /* Paksa setinggi layar */
+        }
+
+        /* 2. Atur Container agar Isi Tengah Vertikal */
+        #slide-1 > .container {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important; /* Posisi konten di tengah layar */
+            padding-top: 0 !important;
+            padding-bottom: 40px !important; /* Jarak bawah kecil */
+        }
+
+        /* 3. Optimalkan Header */
+        #slide-1 .services-header {
+            margin-bottom: 35px !important;
+            text-align: center;
+        }
+        #slide-1 .section-title { font-size: 2.2rem !important; margin-bottom: 5px; }
+        #slide-1 .section-tag { font-size: 0.7rem; padding: 5px 12px; }
+
+        /* 4. Kartu Layanan (Ukuran Seimbang) */
+        #slide-1 .service-card {
+            padding: 25px 20px !important; /* Padding yang pas */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Teks rata tengah vertikal */
+            height: 100%;
+            transition: 0.3s;
+        }
+
+        /* 5. Ukuran Ikon Sedang (Tidak Kecil, Tidak Besar) */
+        #slide-1 .service-icon-box {
+            width: 55px !important;
+            height: 55px !important;
+            margin-bottom: 15px !important;
+            border-radius: 12px !important;
+        }
+        #slide-1 .service-icon-box i { font-size: 1.5rem !important; }
+
+        /* 6. Typography (Terbaca Jelas) */
+        #slide-1 .service-title {
+            font-size: 1.15rem !important; /* Judul jelas terbaca */
+            margin-bottom: 10px !important;
+        }
+
+        #slide-1 .service-desc {
+            font-size: 0.85rem !important; /* Deskripsi tetap ada, ukuran normal */
+            line-height: 1.5 !important;
+            display: block !important; /* Tampilkan kembali deskripsi */
+        }
+
+        /* Sembunyikan tombol link agar lebih rapi */
+        #slide-1 .service-link { display: none !important; }
+
+        /* Efek Hover Halus */
+        #slide-1 .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        /* =========================================
+        CSS GALLERY FIT (NO SCROLL)
+        ========================================= */
+
+        /* 1. Paksa Slide Gallery setinggi layar */
+        #slide-2 {
+            height: 100vh !important;
+            padding-top: 70px !important; /* Offset navbar */
+            padding-bottom: 0 !important;
+            overflow: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        /* 2. Atur Container agar Isi Tengah Vertikal */
+        #slide-2 > .container {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important; /* Posisi grid di tengah */
+            padding-top: 0 !important;
+            padding-bottom: 20px !important;
+            height: 100%;
+        }
+
+        /* 3. Optimasi Header Gallery */
+        #slide-2 .services-header { margin-bottom: 20px !important; text-align: center;}
+        #slide-2 .section-title { font-size: 2rem !important; }
+        #slide-2 .section-tag { font-size: 0.7rem; padding: 5px 12px; }
+
+        /* 4. Grid Layout Desktop (3 Kolom, 2 Baris) */
+        #slide-2 .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Kolom */
+            grid-template-rows: repeat(2, 1fr);    /* 2 Baris (Sama Tinggi) */
+            gap: 15px; /* Jarak kecil */
+            width: 100%;
+            height: 100%; /* Isi sisa ruang */
+            max-height: 75vh; /* Batas tinggi agar header tetap terlihat */
+        }
+
+        /* 5. Gambar Mengisi Grid Item */
+        #slide-2 .gallery-item {
+            height: 100%; /* Paksa gambar isi kotak grid */
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        #slide-2 .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover; /* Potong gambar agar pas (tidak gepeng) */
+            transition: transform 0.5s ease;
+        }
+
+        /* Overlay Text */
+        #slide-2 .gallery-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: #fff;
+            opacity: 0; transition: 0.3s;
+        }
+        #slide-2 .gallery-item:hover .gallery-overlay { opacity: 1; }
+        #slide-2 .gallery-item:hover img { transform: scale(1.1); }
+
+
+        /* --- RESPONSIVE MOBILE (HP) --- */
+        @media (max-width: 768px) {
+            /* Grid Mobile: 2 Kolom, 3 Baris */
+            #slide-2 .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                gap: 10px;
+                max-height: 80vh;
+            }
+            
+            /* Kecilkan judul di HP */
+            #slide-2 .section-title { font-size: 1.5rem !important; }
+        }
