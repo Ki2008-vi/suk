@@ -1,414 +1,727 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Global Production - Premium Event Vendor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elegan Event - Wedding Organizer & Sound System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            champagne: '#F7E7CE',
+            gold: '#C9A962',
+            goldDark: '#A68B4B',
+            cream: '#FDF8F0',
+            charcoal: '#2C2C2C',
+            warmGray: '#8B8680',
+            softPink: '#F5E6E0',
+            sage: '#A8B5A0',
+          },
+          fontFamily: {
+            display: ['Cormorant Garamond', 'serif'],
+            body: ['Montserrat', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: #FDF8F0; overflow-x: hidden; }
+    .font-display { font-family: 'Cormorant Garamond', serif; }
     
-    <!-- FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+    /* Custom Scrollbar & Animations */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #FDF8F0; }
+    ::-webkit-scrollbar-thumb { background: #C9A962; border-radius: 4px; }
     
-    <!-- LIBRARIES -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes floatSlow { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    
+    .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+    .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
+    .animate-float { animation: floatSlow 6s ease-in-out infinite; }
+    .animate-shimmer { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); background-size: 200% 100%; animation: shimmer 3s infinite; }
+    .animate-slideIn { animation: slideIn 0.5s ease-out forwards; }
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    
+    .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(201, 169, 98, 0.15); }
+    
+    .btn-primary { position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s ease; }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3); }
+    
+    .pattern-dots { background-image: radial-gradient(#C9A962 1px, transparent 1px); background-size: 30px 30px; }
+    button:focus-visible, a:focus-visible { outline: 2px solid #C9A962; outline-offset: 2px; }
+    .mobile-nav-item { transition: all 0.3s ease; }
+    .mobile-nav-item:active { transform: scale(0.95); }
+    
+    /* Image Placeholder Style */
+    .img-loading {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+  </style>
 </head>
 <body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#" onclick="manualSlide(0)">GLOBAL<span>PRODUCTION</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav text-center">
-                    <li class="nav-item"><a class="nav-link fw-bold" onclick="manualSlide(0)">Home</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" onclick="manualSlide(1)">Layanan</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" onclick="manualSlide(2)">Galeri</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" onclick="manualSlide(3)">Kontak</a></li>
-                    <li class="nav-item mt-2 mt-lg-0 ms-lg-3">
-                        <a href="https://wa.me/+628234221967?text=Halo%20Global%20Production%20Ponorogo%2C%20Saya%20ingin%20bertanya%20tentang%20layanan%3A%0A%0A-%20Sound%20System%0A-%20Syuting%0A-%20Multimedia%0A-%20Event%20Organizer%0A-%20Lighting%0A-%20Stage%0A-%20Rigging%0A-%20Panggung" class="btn btn-aesthetic">Booking Now</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- SLIDER CONTAINER -->
-    <div class="slider-container" id="sliderContainer">
-        
-        <!-- SLIDE 1: HERO (FULL SCREEN MARQUEE) -->
-<div class="slide" id="slide-0">
+  <div id="root"></div>
+  
+  <script type="text/babel">
+    const { useState, useEffect } = React;
     
-    <!-- 1. MARQUEE ATAS (FULL WIDTH) -->
-    <div class="marquee-full-top">
-        <div class="marquee-content-full">
-            GLOBAL PRODUCTION EST. 2026 • PONOROGO'S FINEST • BOOKING OPEN • HIGH END AUDIO SYSTEM • GLOBAL PRODUCTION EST. 2026 • PONOROGO'S FINEST • BOOKING OPEN •
-        </div>
-    </div>
+    // ================== DATA GAMBAR ==================
+    // PENTING: Pastikan file gambar ada di folder 'images' sejajar dengan index.html
+    // Jika gambar tidak muncul, cek apakah nama file dan ekstensi (.jpg/.png) sudah benar.
+    
+    const heroImage = "assets/images/7.jpg"; // Ganti dengan nama file hero Anda
+    
+    const portfolios = [
+      { id: 1, title: "Andi & Sarah Wedding", location: "Hotel Mulia, Jakarta", category: "Wedding", image: "assets/images/1.jpg" },
+      { id: 2, title: "Corporate Gala Dinner", location: "Ballroom BCA, Surabaya", category: "Corporate", image: "assets/images/2.jpg" },
+      { id: 3, title: "Budi & Maya Reception", location: "The Garden, Bandung", category: "Wedding", image: "assets/images/3.jpg" },
+      { id: 4, title: "Music Festival", location: "Lapangan Merdeka, Malang", category: "Event", image: "assets/images/4.jpg" },
+      { id: 5, title: "Rina & Dodi Akad", location: "Grand Sahid, Yogyakarta", category: "Wedding", image: "assets/images/5.jpg" },
+      { id: 6, title: "Product Launching", location: "JCC Senayan, Jakarta", category: "Corporate", image: "assets/images/6.jpg" }
+    ];
+    // =================================================
 
-    <!-- KONTEN TENGAH -->
-    <div class="container h-100 d-flex align-items-center" style="position: relative; z-index: 2;">
-        <div class="row w-100 align-items-center">
+    const services = [
+      { id: 1, title: "Wedding Organizer", description: "Layanan perencanaan dan pengelolaan acara pernikahan dari awal hingga selesai.", icon: "rings", features: ["Konsep & Tema", "Vendor Management", "Koordinasi Acara"] },
+      { id: 2, title: "Sound System", description: "Penyewaan sound system profesional dengan kualitas audio terbaik.", icon: "speaker", features: ["Sound System Fullset", "Wireless Mic", "Audio Engineer"] },
+      { id: 3, title: "Decoration", description: "Dekorasi memukau untuk pelaminan, stage, dan photobooth.", icon: "decoration", features: ["Pelaminan & Stage", "Backdrop Design", "Flower Arrangement"] },
+      { id: 4, title: "Catering Service", description: "Layanan katering dengan menu beragam dan presentasi cantik.", icon: "catering", features: ["Menu Custom", "Prasmanan/Duduk", "Dessert Corner"] },
+      { id: 5, title: "Lighting Design", description: "Desain pencahayaan artistik untuk suasana dramatis.", icon: "lighting", features: ["Stage Lighting", "Moving Head", "Special Effects"] },
+      { id: 6, title: "Multimedia", description: "Layanan multimedia meliputi LED Screen hingga visual effects.", icon: "multimedia", features: ["LED Screen", "Video Mapping", "Live Streaming"] },
+      { id: 7, title: "Stage & Rigging", description: "Konstruksi panggung profesional dan sistem rigging aman.", icon: "stage", features: ["Stage Construction", "Truss System", "Roof Structure"] },
+      { id: 8, title: "Production Syuting", description: "Jasa videografi profesional untuk dokumentasi acara.", icon: "production", features: ["Cinematic Video", "Company Profile", "Commercial Ads"] },
+      { id: 9, title: "Event Organizer", description: "Manajemen event profesional untuk acara korporat.", icon: "event", features: ["Corporate Event", "Product Launch", "Seminar"] }
+    ];
+    
+    const testimonials = [
+      { id: 1, name: "Ratna & Hendra", text: "Pelayanan luar biasa! Tim Elegan Event sangat profesional.", rating: 5 },
+      { id: 2, name: "PT. Maju Bersama", text: "Sound system dan lighting berkualitas tinggi.", rating: 5 },
+      { id: 3, name: "Dewi & Reza", text: "Dekorasi pelaminan melebihi ekspektasi kami.", rating: 5 }
+    ];
+    
+    const pageNames = ['Home', 'Services', 'Portfolio', 'Contact'];
+    
+    // Icon Components (Disimpan pendek untuk menghemat ruang, logika sama seperti sebelumnya)
+    const IconRings = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="16" cy="24" r="10" /><circle cx="32" cy="24" r="10" /></svg>;
+    const IconSpeaker = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="8" y="10" width="14" height="28" rx="2" /><circle cx="15" cy="30" r="4" /></svg>;
+    const IconDecoration = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M24 4 L24 12 Q16 20 12 32 L36 32 Q32 20 24 12" /></svg>;
+    const IconCatering = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><ellipse cx="24" cy="16" rx="12" ry="4" /><path d="M12 16 L12 32 Q12 36 24 36 Q36 36 36 32 L36 16" /></svg>;
+    const IconLighting = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M24 4 L24 12 L16 24 L20 24 L16 40 L32 22 L26 22 L32 12 Z" /></svg>;
+    const IconMultimedia = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="6" y="10" width="36" height="24" rx="2" /><path d="M20 20 L28 24 L20 28 Z" /></svg>;
+    const IconStage = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 38 L24 10 L44 38" /><rect x="10" y="28" width="28" height="10" /></svg>;
+    const IconProduction = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="14" width="28" height="20" rx="2" /><circle cx="18" cy="24" r="5" /><path d="M32 20 L44 14 L44 34 L32 28" /></svg>;
+    const IconEvent = () => <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="8" y="12" width="32" height="28" rx="2" /><path d="M8 22 L40 22" /><path d="M16 8 L16 16" /><path d="M32 8 L32 16" /></svg>;
+    const IconStar = ({ filled }) => <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${filled ? 'text-gold fill-gold' : 'text-gray-300'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>;
+    const IconArrow = ({ direction, className = "w-5 h-5 sm:w-6 sm:h-6" }) => <svg className={`${className} ${direction === 'left' ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>;
+    const IconMenu = () => <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12h18M3 6h18M3 18h18" /></svg>;
+    const IconClose = () => <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>;
+    const IconLocation = () => <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
+    
+    const getIcon = (type) => {
+      const icons = { rings: <IconRings />, speaker: <IconSpeaker />, decoration: <IconDecoration />, catering: <IconCatering />, lighting: <IconLighting />, multimedia: <IconMultimedia />, stage: <IconStage />, production: <IconProduction />, event: <IconEvent /> };
+      return icons[type] || <IconRings />;
+    };
+    
+    // Navigation Component
+    const Navigation = ({ currentPage, setCurrentPage, isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }) => (
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-cream/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gold/20 flex items-center justify-center">
+                <span className="font-display text-gold text-lg sm:text-xl font-bold">G</span>
+              </div>
+              <span className="font-display text-xl sm:text-2xl font-bold text-charcoal">Global<span className="text-gold">Production</span></span>
+            </div>
             
-            <!-- KOLOM KIRI: TEKS -->
-            <div class="col-lg-6 hero-content">
-                <span class="section-tag" style="background: var(--accent-yellow); color: #000; margin-bottom: 20px; display: inline-block; padding: 5px 15px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; border-radius: 50px;">Vendor Event Terpercaya</span>
+            <div className="hidden md:flex items-center gap-8">
+              {pageNames.map((item, index) => (
+                <button key={item} onClick={() => setCurrentPage(index)} className={`font-body text-sm font-medium transition-all duration-300 relative group ${currentPage === index ? 'text-gold' : 'text-charcoal hover:text-gold'}`}>
+                  {item}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-gold transition-all duration-300 ${currentPage === index ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                </button>
+              ))}
+            </div>
+            
+            <div className="flex items-center gap-2 sm:gap-4">
+              <a href="https://wa.me/+621234221967?text=Halo%20Global%20Production%20Ponorogo%2C%20Saya%20ingin%20bertanya%20tentang%20layanan%3A%0A%0A-%20Sound%20System%0A-%20Syuting%0A-%20Multimedia%0A-%20Event%20Organizer%0A-%20Lighting%0A-%20Stage%0A-%20Rigging%0A-%20Panggung" className="btn-primary bg-gold text-cream px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-body text-xs sm:text-sm font-medium hidden sm:block">Hubungi Kami</a>
+              <button className="md:hidden p-2 text-charcoal hover:text-gold transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
+                {isMobileMenuOpen ? <IconClose /> : <IconMenu />}
+              </button>
+            </div>
+          </div>
+          
+          {isMobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 right-0 bg-cream/98 backdrop-blur-md shadow-lg animate-slideIn">
+              <div className="px-4 py-4 space-y-2">
+                {pageNames.map((item, index) => (
+                  <button key={item} onClick={() => { setCurrentPage(index); setIsMobileMenuOpen(false); }} className={`w-full text-left px-4 py-3 rounded-lg font-body text-sm font-medium transition-all ${currentPage === index ? 'bg-gold/10 text-gold' : 'text-charcoal hover:bg-gold/5'}`}>
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+    );
+    
+    // Mobile Slide Navigation
+    const MobileSlideNav = ({ currentPage, setCurrentPage }) => (
+      <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-cream/95 backdrop-blur-md border-t border-gold/20 shadow-lg">
+        <div className="flex items-center justify-between px-4 py-3">
+          <button onClick={() => currentPage > 0 && setCurrentPage(currentPage - 1)} disabled={currentPage === 0} className={`mobile-nav-item flex items-center gap-1 px-4 py-2 rounded-full font-body text-sm font-medium ${currentPage === 0 ? 'text-warmGray/50 cursor-not-allowed' : 'text-gold hover:bg-gold/10'}`}>
+            <IconArrow direction="left" className="w-4 h-4" /><span className="hidden xs:inline">Prev</span>
+          </button>
+          <div className="flex items-center gap-2">
+            {pageNames.map((_, index) => (
+              <button key={index} onClick={() => setCurrentPage(index)} className={`transition-all duration-300 rounded-full ${currentPage === index ? 'w-8 h-2 bg-gold' : 'w-2 h-2 bg-gold/30 hover:bg-gold/50'}`} aria-label={`Go to ${pageNames[index]}`} />
+            ))}
+          </div>
+          <button onClick={() => currentPage < 3 && setCurrentPage(currentPage + 1)} disabled={currentPage === 3} className={`mobile-nav-item flex items-center gap-1 px-4 py-2 rounded-full font-body text-sm font-medium ${currentPage === 3 ? 'text-warmGray/50 cursor-not-allowed' : 'text-gold hover:bg-gold/10'}`}>
+            <span className="hidden xs:inline">Next</span><IconArrow direction="right" className="w-4 h-4" />
+          </button>
+        </div>
+        <div className="text-center pb-2"><span className="font-body text-xs text-warmGray">{pageNames[currentPage]} - {currentPage + 1}/4</span></div>
+      </div>
+    );
+    
+    // Hero Section
+    const HeroSection = ({ setCurrentPage }) => {
+      const [isVisible, setIsVisible] = useState(false);
+      useEffect(() => { setIsVisible(true); }, []);
+      
+      return (
+        <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-cream via-champagne/30 to-softPink/40 pb-24 lg:pb-0">
+          <div className="absolute inset-0 pattern-dots opacity-30" />
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gold/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-40 right-20 w-40 h-40 bg-sage/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-20 min-h-screen flex items-center">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
+              <div className={`space-y-6 sm:space-y-8 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
+                <div className="inline-flex items-center gap-2 bg-gold/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+                  <div className="w-2 h-2 bg-gold rounded-full animate-pulse" />
+                  <span className="font-body text-xs sm:text-sm text-goldDark font-medium">Wedding & Event Specialist</span>
+                </div>
                 
-                <h1 class="display-3 fw-bold" style="font-family: var(--font-heading); color: var(--accent-black); line-height: 1.1;">
-                    Event <br>
-                    <span style="font-style:italic; color:var(--accent-yellow)">Estetik</span> & <br>
-                    Profesional.
+                <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-charcoal leading-tight">
+                  Wujudkan<span className="block text-gold">Momen Indah</span><span className="block text-2xl sm:text-3xl md:text-4xl font-normal italic mt-2 text-warmGray">Anda</span>
                 </h1>
                 
-                <p class="lead text-muted" style="max-width: 500px; margin-bottom: 30px;">
-                    Kami menghadirkan standar produksi global ke panggung lokal. Sound system jernih, lighting sinematik, dan panggung kokoh.
+                <p className="font-body text-base sm:text-lg text-warmGray max-w-lg leading-relaxed">
+                  Layanan Wedding Organizer dan Sewa Sound System profesional dengan sentuhan elegan untuk hari spesial Anda.
                 </p>
                 
-                <div class="d-flex gap-3 mb-4">
-                    <button onclick="manualSlide(1)" class="btn btn-aesthetic shadow">Lihat Layanan</button>
-                    <button onclick="manualSlide(2)" class="btn btn-outline-aesthetic">Portfolio</button>
-                </div>
-
-                <!-- Gallery Scroll Hanya untuk HP (Mobile) -->
-                <div class="col-12 d-lg-none mt-4">
-                    <p class="small text-muted fw-bold mb-2 text-uppercase">Latest Works</p>
-                    <div class="mobile-hero-scroll">
-                        <div class="mobile-scroll-item">
-                            <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1974&auto=format&fit=crop" alt="Concert">
-                            <div class="img-label">Live Music</div>
-                        </div>
-                        <div class="mobile-scroll-item">
-                            <img src="https://images.unsplash.com/photo-1505373877841-8d43f703fb64?q=80&w=2070&auto=format&fit=crop" alt="Stage">
-                            <div class="img-label">Stage Build</div>
-                        </div>
-                        <div class="mobile-scroll-item">
-                            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop" alt="Lighting">
-                            <div class="img-label">Lighting</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- KOLOM KANAN: DESKTOP GALLERY -->
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="hero-gallery-wrapper">
-                    <!-- Gambar Utama -->
-                    <div class="hero-img-card h-img-main">
-                        <img src="assets/images/4.jpg" alt="Concert Crowd">
-                        <div class="img-label">Festival Live</div>
-                    </div>
-                    
-                    <!-- Gambar Kecil Bawah Kiri -->
-                    <div class="hero-img-card h-img-sub-1">
-                        <img src="assets/images/5.jpg" alt="DJ Equipment">
-                        <div class="img-label">Sound System</div>
-                    </div>
-                    
-                    <!-- Gambar Kecil Bawah Tengah -->
-                    <div class="hero-img-card h-img-sub-2">
-                        <img src="assets/images/3.jpg" alt="Stage Lights">
-                        <div class="img-label" style="background:var(--accent-yellow)">Stage Rigging</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- 2. MARQUEE BAWAH (FULL WIDTH) -->
-    <div class="marquee-full-bottom">
-        <div class="marquee-content-full">
-            CREATIVE STAGE CONCEPT • PROFESSIONAL TEAM • WORLD CLASS EQUIPMENT • WHATSAPP 0812-3422-1967 • CREATIVE STAGE CONCEPT • PROFESSIONAL TEAM • WORLD CLASS EQUIPMENT •
-        </div>
-    </div>
-
-</div>
-
-        <!-- SLIDE 2: SERVICES (REFINED) -->
-        <div class="slide" id="slide-1">
-            <!-- Hapus py-5, ganti dengan h-100 d-flex flex-column agar muat layar -->
-<div class="container h-100 d-flex flex-column">
-                <div class="services-header animate__animated animate__fadeIn">
-                    <span class="section-tag">Layanan Kita</span>
-                    <h2 class="section-title">Solusi Produksi Premium</h2>
-                </div>
-
-                <!-- Grid dengan gap g-3 (Jarak pas) -->
-                <div class="row g-3">
-                    <!-- Item 1 -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="service-card" onclick="openModal('Sound System', 'Audio berdaya tinggi dengan kejernihan frekuensi yang presisi.')">
-                            <div class="service-icon-box"><i class="fas fa-music"></i></div>
-                            <h3 class="service-title">Sound System</h3>
-                            <p class="service-desc">Audio jernih & bass nendang untuk konser hingga seminar.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="service-card" onclick="openModal('Lighting Design', 'Tata cahaya dramatis dengan Moving Head dan Par LED.')">
-                            <div class="service-icon-box"><i class="fas fa-lightbulb"></i></div>
-                            <h3 class="service-title">Lighting Design</h3>
-                            <p class="service-desc">Mengubah panggung biasa menjadi visual sinematik.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="service-card" onclick="openModal('Multimedia', 'LED Screen Indoor/Outdoor dan Video Mapping.')">
-                            <div class="service-icon-box"><i class="fas fa-layer-group"></i></div>
-                            <h3 class="service-title">Multimedia</h3>
-                            <p class="service-desc">LED Screen P2.5 & Visual memukau.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="service-card" onclick="openModal('Stage & Rigging', 'Panggung modular dan sistem Rigging Truss Aluminium.')">
-                            <div class="service-icon-box"><i class="fas fa-cubes"></i></div>
-                            <h3 class="service-title">Stage & Rigging</h3>
-                            <p class="service-desc">Struktur kokoh berstandar keamanan tinggi.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="service-card" onclick="openModal('Production Syuting', 'Dokumentasi Cinematic 4K dan Live Streaming.')">
-                            <div class="service-icon-box"><i class="fas fa-video"></i></div>
-                            <h3 class="service-title">Production Syuting</h3>
-                            <p class="service-desc">Dokumentasi sinema & live streaming.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 6 -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="service-card" onclick="openModal('Event Organizer', 'Total event management dari konsep hingga eksekusi.')">
-                            <div class="service-icon-box"><i class="fas fa-wand-magic-sparkles"></i></div>
-                            <h3 class="service-title">Event Organizer</h3>
-                            <p class="service-desc">Kami urus semua detail acara Anda.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 3: GALLERY -->
-        <div class="slide" id="slide-2"> 
-            <div class="container h-100 d-flex flex-column">
-                <div class="services-header animate__animated animate__fadeIn" style="padding-top: 40px;">
-                    <span class="section-tag">Portfolio</span>
-                    <h2 class="section-title">Dokumentasi Event</h2>
+                <div className="flex flex-wrap gap-3 sm:gap-4">
+                  <button onClick={() => setCurrentPage(1)} className="btn-primary bg-gold text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-full font-body text-sm sm:base font-medium inline-flex items-center gap-2">
+                    Lihat Layanan<IconArrow direction="right" className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
+                  <button onClick={() => setCurrentPage(2)} className="border-2 border-gold text-gold px-6 sm:px-8 py-3 sm:py-4 rounded-full font-body text-sm sm:text-base font-medium hover:bg-gold hover:text-cream transition-all duration-300">
+                    Portfolio
+                  </button>
                 </div>
                 
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="assets/images/10 (1).png" alt="Concert">
-                        <div class="gallery-overlay">
-                            <h5>Live Concert</h5>
-                            <p>Sound & Light</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/3.jpg" alt="Party">
-                        <div class="gallery-overlay">
-                            <h5>Stage Rigging</h5>
-                            <p>Structure & Rigging</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/11.png" alt="Stage">
-                        <div class="gallery-overlay">
-                            <h5>Festival Stage</h5>
-                            <p>Our Festival</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/6.jpg" alt="DJ">
-                        <div class="gallery-overlay">
-                            <h5>DW Performance</h5>
-                            <p>Audio System</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/5.jpg" alt="Wedding">
-                        <div class="gallery-overlay">
-                            <h5>Sound System</h5>
-                            <p>Decoration and Sound</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/4.jpg" alt="Crowd">
-                        <div class="gallery-overlay">
-                            <h5>Corporate Event</h5>
-                            <p>Multimedia</p>
-                        </div>
-                    </div>
+                <div className="flex gap-8 sm:gap-12 pt-6 sm:pt-8 border-t border-gold/20">
+                  <div className="text-center"><span className="font-display text-3xl sm:text-4xl font-bold text-gold">500+</span><p className="font-body text-xs sm:text-sm text-warmGray mt-1">Event Sukses</p></div>
+                  <div className="text-center"><span className="font-display text-3xl sm:text-4xl font-bold text-gold">8+</span><p className="font-body text-xs sm:text-sm text-warmGray mt-1">Tahun</p></div>
+                  <div className="text-center"><span className="font-display text-3xl sm:text-4xl font-bold text-gold">100%</span><p className="font-body text-xs sm:text-sm text-warmGray mt-1">Kepuasan</p></div>
                 </div>
+              </div>
+              
+              {/* HERO IMAGE CONTAINER */}
+              <div className={`relative hidden lg:block ${isVisible ? 'animate-fadeInUp stagger-2' : 'opacity-0'}`}>
+                <div className="relative w-full aspect-square max-w-lg mx-auto">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-champagne to-sage/20 rounded-full" />
+                  <div className="absolute inset-8 bg-cream rounded-full shadow-2xl overflow-hidden">
+                    {/* Ganti konten dummy dengan tag IMG */}
+                    <img 
+                      src={heroImage} 
+                      alt="Wedding Hero" 
+                      className="w-full h-full object-cover"
+                      onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+                    />
+                    {/* Fallback jika gambar tidak ditemukan */}
+                    <div className="absolute inset-0 flex-col items-center justify-center bg-cream hidden">
+                        <div className="w-24 h-24 mx-auto mb-4 bg-gold/20 rounded-full flex items-center justify-center">
+                            <IconRings />
+                        </div>
+                        <p className="font-body text-sm text-warmGray">Gambar tidak ditemukan</p>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute top-10 right-0 bg-white p-4 rounded-xl shadow-lg animate-float z-10" style={{animationDelay: '1s'}}>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-sage/30 rounded-full flex items-center justify-center"><IconSpeaker /></div>
+                      <div><p className="font-body text-xs text-warmGray">Sound System</p><p className="font-body text-sm font-semibold text-charcoal">Premium Quality</p></div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-10 left-0 bg-white p-4 rounded-xl shadow-lg animate-float z-10" style={{animationDelay: '3s'}}>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gold/20 rounded-full flex items-center justify-center"><IconLighting /></div>
+                      <div><p className="font-body text-xs text-warmGray">Lighting</p><p className="font-body text-sm font-semibold text-charcoal">Design Pro</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-
-        <!-- SLIDE 4: FOOTER (BENTO STYLE) -->
-                <!-- SLIDE 4: FOOTER (NEW LAYOUT) -->
-        <div class="slide" id="slide-3">
-            <footer class="main-footer">
+          </div>
+        </section>
+      );
+    };
+    
+    // Services Section
+    const ServicesSection = () => {
+      const [visibleCards, setVisibleCards] = useState([]);
+      useEffect(() => { const timer = setTimeout(() => setVisibleCards(services.map((_, i) => i)), 100); return () => clearTimeout(timer); }, []);
+      
+      return (
+        <section className="min-h-screen bg-cream relative overflow-hidden py-20 sm:py-24 pb-32 lg:pb-24">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-champagne/30 rounded-full blur-3xl" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+            <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+              <span className="font-body text-xs sm:text-sm text-gold uppercase tracking-widest">Our Services</span>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mt-4">Layanan <span className="text-gold">Unggulan</span></h2>
+              <div className="w-24 h-px bg-gold mx-auto mt-6" />
+            </div>
+            
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {services.map((service, index) => (
+                <div key={service.id} className={`card-hover bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-gold/10 relative overflow-hidden group ${visibleCards.includes(index) ? 'animate-fadeInUp' : 'opacity-0'}`} style={{ animationDelay: `${index * 0.08}s` }}>
+                  <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative z-10">
+                    <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-gold/20 to-champagne rounded-xl flex items-center justify-center text-gold flex-shrink-0 group-hover:scale-110 transition-transform duration-300">{getIcon(service.icon)}</div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-display text-lg sm:text-xl font-bold text-charcoal mb-1 sm:mb-2">{service.title}</h3>
+                        <p className="font-body text-warmGray text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3 line-clamp-2">{service.description}</p>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                          {service.features.map((feature, i) => (
+                            <span key={i} className="inline-flex items-center gap-1 bg-gold/5 px-2 py-0.5 rounded-full"><div className="w-1 h-1 bg-gold rounded-full" /><span className="font-body text-xs text-charcoal">{feature}</span></span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="text-center mt-12 sm:mt-16">
+              <button className="btn-primary bg-gold text-cream px-8 sm:px-10 py-3 sm:py-4 rounded-full font-body text-sm sm:text-base font-medium inline-flex items-center gap-2 sm:gap-3">
+                Konsultasi Gratis<IconArrow direction="right" className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            </div>
+          </div>
+        </section>
+      );
+    };
+    
+    // Portfolio Section (WITH IMAGES)
+    const PortfolioSection = () => {
+      const [activeFilter, setActiveFilter] = useState('All');
+      const [visibleItems, setVisibleItems] = useState([]);
+      
+      const filters = ['All', 'Wedding', 'Corporate', 'Event'];
+      const filteredPortfolios = activeFilter === 'All' ? portfolios : portfolios.filter(p => p.category === activeFilter);
+      
+      useEffect(() => { setVisibleItems([]); const timer = setTimeout(() => setVisibleItems(filteredPortfolios.map((_, i) => i)), 100); return () => clearTimeout(timer); }, [activeFilter]);
+      
+      return (
+        <section className="min-h-screen bg-gradient-to-b from-cream via-champagne/20 to-cream py-20 sm:py-24 pb-32 lg:pb-24 relative overflow-hidden">
+          <div className="absolute inset-0 pattern-dots opacity-20" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+            <div className="text-center mb-10 sm:mb-12 animate-fadeInUp">
+              <span className="font-body text-xs sm:text-sm text-gold uppercase tracking-widest">Our Work</span>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mt-4">Portfolio <span className="text-gold">Karya</span></h2>
+              <div className="w-24 h-px bg-gold mx-auto mt-6" />
+            </div>
+            
+            <div className="flex justify-center gap-2 sm:gap-4 mb-10 sm:mb-12 flex-wrap">
+              {filters.map(filter => (
+                <button key={filter} onClick={() => setActiveFilter(filter)} className={`px-4 sm:px-6 py-2 rounded-full font-body text-xs sm:text-sm font-medium transition-all duration-300 ${activeFilter === filter ? 'bg-gold text-cream' : 'bg-white text-charcoal hover:bg-gold/10 border border-gold/20'}`}>
+                  {filter}
+                </button>
+              ))}
+            </div>
+            
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {filteredPortfolios.map((portfolio, index) => (
+                <div key={portfolio.id} className={`group relative overflow-hidden rounded-xl sm:rounded-2xl aspect-[4/5] cursor-pointer card-hover ${visibleItems.includes(index) ? 'animate-fadeInUp' : 'opacity-0'}`} style={{ animationDelay: `${index * 0.1}s` }}>
+                  
+                  {/* IMAGE TAG */}
+                  <img 
+                    src={portfolio.image} 
+                    alt={portfolio.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => { 
+                      // Fallback gradient jika gambar error
+                      e.target.style.display = 'none'; 
+                      e.target.parentElement.classList.add('bg-gradient-to-br', 'from-gold/30', 'to-champagne'); 
+                    }}
+                  />
+                  
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                  
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <span className="font-body text-xs text-gold uppercase tracking-wider mb-1 sm:mb-2">{portfolio.category}</span>
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-white">{portfolio.title}</h3>
+                    <p className="font-body text-xs sm:text-sm text-white/80 mt-1">{portfolio.location}</p>
+                  </div>
+                  
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/80 to-transparent group-hover:opacity-0 transition-opacity">
+                    <h3 className="font-display text-sm sm:text-base font-bold text-white">{portfolio.title}</h3>
+                  </div>
+                  
+                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-white/90 px-2 sm:px-3 py-1 rounded-full">
+                    <span className="font-body text-xs font-medium text-charcoal">{portfolio.category}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+    
+    // Contact Section (Simplified for brevity)
+    const ContactSection = () => {
+      const [formData, setFormData] = useState({ name: '', phone: '', email: '', service: '', message: '' });
+      const [submitted, setSubmitted] = useState(false);
+      
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 3000);
+      };
+      
+      const handleChange = (e) => {
+        setFormData({...formData, [e.target.name]: e.target.value});
+      };
+      
+      return (
+        <section className="min-h-screen bg-charcoal relative overflow-hidden py-20 sm:py-24 pb-32 lg:pb-24">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-20 left-20 w-64 h-64 bg-gold/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-20 w-80 h-80 bg-gold/5 rounded-full blur-3xl" />
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+              <span className="font-body text-xs sm:text-sm text-gold uppercase tracking-widest">Contact Us</span>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4">
+                Wujudkan <span className="text-gold">Impian</span> Anda
+              </h2>
+              <div className="w-24 h-px bg-gold mx-auto mt-6" />
+              <p className="font-body text-warmGray mt-6 max-w-2xl mx-auto text-sm sm:text-base">
+                Hubungi kami untuk konsultasi gratis dan wujudkan acara impian Anda bersama tim profesional kami.
+              </p>
+            </div>
+            
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gold/20 animate-fadeInUp order-2 lg:order-1">
+                {submitted ? (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h3 className="font-display text-2xl text-white mb-2">Terima Kasih!</h3>
+                    <p className="font-body text-warmGray">Pesan Anda telah kami terima.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                      <div>
+                        <label className="font-body text-xs sm:text-sm text-warmGray block mb-2">Nama Lengkap</label>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="w-full bg-white/10 border border-gold/20 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 font-body text-sm text-white placeholder:text-warmGray/50 focus:outline-none focus:border-gold transition-colors"
+                          placeholder="Masukkan nama"
+                        />
+                      </div>
+                      <div>
+                        <label className="font-body text-xs sm:text-sm text-warmGray block mb-2">No. Telepon</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          required
+                          className="w-full bg-white/10 border border-gold/20 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 font-body text-sm text-white placeholder:text-warmGray/50 focus:outline-none focus:border-gold transition-colors"
+                          placeholder="08xxxxxxxxxx"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label className="font-body text-xs sm:text-sm text-warmGray block mb-2">Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-white/10 border border-gold/20 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 font-body text-sm text-white placeholder:text-warmGray/50 focus:outline-none focus:border-gold transition-colors"
+                        placeholder="email@example.com"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="font-body text-xs sm:text-sm text-warmGray block mb-2">Layanan yang Dibutuhkan</label>
+                      <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-white/10 border border-gold/20 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 font-body text-sm text-white focus:outline-none focus:border-gold transition-colors"
+                      >
+                        <option value="" className="bg-charcoal">Pilih Layanan</option>
+                        <option value="wedding" className="bg-charcoal">Wedding Organizer</option>
+                        <option value="sound" className="bg-charcoal">Sewa Sound System</option>
+                        <option value="decoration" className="bg-charcoal">Decoration</option>
+                        <option value="catering" className="bg-charcoal">Catering Service</option>
+                        <option value="lighting" className="bg-charcoal">Lighting Design</option>
+                        <option value="multimedia" className="bg-charcoal">Multimedia</option>
+                        <option value="stage" className="bg-charcoal">Stage & Rigging</option>
+                        <option value="production" className="bg-charcoal">Production Syuting</option>
+                        <option value="event" className="bg-charcoal">Event Organizer</option>
+                        <option value="full" className="bg-charcoal">Full Package</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label className="font-body text-xs sm:text-sm text-warmGray block mb-2">Pesan</label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows="4"
+                        className="w-full bg-white/10 border border-gold/20 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 font-body text-sm text-white placeholder:text-warmGray/50 focus:outline-none focus:border-gold transition-colors resize-none"
+                        placeholder="Ceritakan tentang acara impian Anda..."
+                      />
+                    </div>
+                    
+                    <button
+                      type="submit"
+                      className="btn-primary w-full bg-gold text-cream py-3 sm:py-4 rounded-lg sm:rounded-xl font-body text-sm sm:text-base font-medium"
+                    >
+                      Kirim Pesan
+                    </button>
+                  </form>
+                )}
+              </div>
+              
+              <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 animate-fadeInUp stagger-1">
+                  <div className="bg-gradient-to-br from-gold/20 to-gold/10 rounded-lg sm:rounded-2xl p-4 sm:p-6 border border-gold/20">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gold/20 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <h4 className="font-display text-base sm:text-lg text-white mb-1">Telepon</h4>
+                    <p className="font-body text-xs sm:text-sm text-gold">+62 812-3422-1967</p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-gold/20 to-gold/10 rounded-lg sm:rounded-2xl p-4 sm:p-6 border border-gold/20">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gold/20 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h4 className="font-display text-base sm:text-lg text-white mb-1">Email</h4>
+                    <p className="font-body text-xs sm:text-sm text-gold truncate">info@globalproduction.id</p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-gold/20 to-gold/10 rounded-lg sm:rounded-2xl p-4 sm:p-6 border border-gold/20">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gold/20 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h4 className="font-display text-base sm:text-lg text-white mb-1">Jam Kerja</h4>
+                    <p className="font-body text-xs sm:text-sm text-warmGray">Senin - Minggu, 24/7</p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-gold/20 to-gold/10 rounded-lg sm:rounded-2xl p-4 sm:p-6 border border-gold/20">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gold/20 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                      <IconLocation />
+                    </div>
+                    <h4 className="font-display text-base sm:text-lg text-white mb-1">Alamat</h4>
+                    <p className="font-body text-xs sm:text-sm text-warmGray">RT.03/RW.01, karangasri, Karanggebang</p>
+                  </div>
+                </div>
                 
-                <!-- Container Utama -->
-                <div class="footer-container">
-                    <div class="footer-grid-new">
-                        
-                        <!-- 1. KOLOM KIRI: LOGO & SOCIAL (FULL VERTICAL) -->
-                        <div class="footer-brand-box">
-                            <div>
-                                <div class="footer-logo-text">
-                                    GLOBAL<br><span>PRODUCTION</span>
-                                </div>
-                                <p class="footer-desc">
-                                    Mitra strategis untuk kebutuhan event Anda. Kami menggabungkan teknologi audio-visual terkini dengan seni pertunjukan untuk menciptakan pengalaman yang tak terlupakan.
-                                </p>
-                            </div>
-                            
-                            <!-- Social Media -->
-                            <div>
-                                <p style="font-weight:700; font-size:0.8rem; text-transform:uppercase; color:#666; margin-bottom:15px;">Follow Us</p>
-                                <div class="social-circle-new">
-                                    <a href="https://www.instagram.com/globalaudio_ponorogo/" class="social-btn-new"><i class="fab fa-instagram"></i></a>
-                                    <a href="https://www.youtube.com/@globalproduction8005" class="social-btn-new"><i class="fab fa-youtube"></i></a>
-                                    <a href="https://www.tiktok.com/@globalaudioponorogoreal" class="social-btn-new"><i class="fab fa-tiktok"></i></a>
-                                    <a href="https://web.facebook.com/profile.php?id=100064192412995" class="social-btn-new"><i class="fab fa-facebook-f"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 2. KOLOM TENGAH: MENU CEPAT -->
-                        <div class="footer-menu-box">
-                            <h5>Menu Cepat</h5>
-                            <ul class="footer-list">
-                                <li><a href="#" onclick="manualSlide(0)">Beranda <i class="fas fa-arrow-right"></i></a></li>
-                                <li><a href="#" onclick="manualSlide(1)">Layanan Kami <i class="fas fa-arrow-right"></i></a></li>
-                                <li><a href="#" onclick="manualSlide(2)">Portfolio <i class="fas fa-arrow-right"></i></a></li>
-                                <li><a href="https://wa.me/081234221967">Hubungi Kami <i class="fas fa-arrow-right"></i></a></li>
-                            </ul>
-                        </div>
-
-                        <!-- 3. KOLOM KANAN ATAS: KONTAK INFO -->
-                        <div class="footer-contact-box">
-                            <h5>Hubungi Kami</h5>
-                            
-                            <div class="contact-info-row">
-                                <div class="icon-box-small"><i class="fas fa-map-marker-alt"></i></div>
-                                <div>
-                                    <small style="display:block; color:#666; font-size:0.75rem;">Alamat</small>
-                                    <span>Karanggebang, Jetis, Ponorogo</span>
-                                </div>
-                            </div>
-
-                            <div class="contact-info-row">
-                                <div class="icon-box-small"><i class="fas fa-phone-alt"></i></div>
-                                <div>
-                                    <small style="display:block; color:#666; font-size:0.75rem;">Telepon</small>
-                                    <span>+62 812-3422-1967</span>
-                                </div>
-                            </div>
-
-                            <div class="contact-info-row">
-                                <div class="icon-box-small"><i class="fas fa-envelope"></i></div>
-                                <div>
-                                    <small style="display:block; color:#666; font-size:0.75rem;">Email</small>
-                                    <span>info@globalproduction.id</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 4. KOLOM KANAN ATAS LANJUTAN: LAYANAN POPULER -->
-                        <div class="footer-menu-box" style="margin-top: 0;">
-                            <h5>Layanan</h5>
-                            <ul class="footer-list">
-                                <li><a href="#" onclick="openModal('Sound', 'Desc')">Sound System <i class="fas fa-arrow-right"></i></a></li>
-                                <li><a href="#" onclick="openModal('Light', 'Desc')">Stage Lighting <i class="fas fa-arrow-right"></i></a></li>
-                                <li><a href="#" onclick="openModal('Rig', 'Desc')">Truss System <i class="fas fa-arrow-right"></i></a></li>
-                            </ul>
-                        </div>
-
-                        <!-- 5. BAWAH MELEBAR: MAP BESAR -->
-                        <div class="footer-map-wide">
-                            <div class="map-overlay-label">Lokasi Workshop</div>
-                            <!-- Google Maps Embed -->
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.57461384212!2d111.4887810750884!3d-7.9394162920846325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e790b0047696b81%3A0xda7f0af71aa4e4f6!2sGLOBAL%20PRODUCTION!5e0!3m2!1sid!2sid!4v1770085508322!5m2!1sid!2sid" loading="lazy"></iframe>
-                        </div>
-
+                <div className="animate-fadeInUp stagger-2">
+                  <h3 className="font-display text-lg sm:text-xl text-white mb-3 sm:mb-4">Lokasi Kami</h3>
+                  <div className="bg-white/5 rounded-xl sm:rounded-2xl border border-gold/20 overflow-hidden">
+                    <div className="relative w-full h-48 sm:h-56">
+                      <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d126472.23655394977!2d111.411365!3d-7.8681119!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e790b0047696b81%3A0xda7f0af71aa4e4f6!2sGLOBAL%20PRODUCTION!5e0!3m2!1sid!2sid!4v1772072702376!5m2!1sid!2sid"
+                        width="100%" 
+                        height="100%" 
+                        style={{border: 0}} 
+                        allowFullScreen="" 
+                        loading="lazy" 
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Lokasi Elegan Event"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent pointer-events-none" />
                     </div>
-                </div>
-
-                <!-- Running Text Footer -->
-                <div class="footer-marquee-bottom">
-                    <div class="marquee-content">
-                        GLOBAL PRODUCTION PONOROGO • EVENT SPECIALIST • CREATIVE • INNOVATIVE • BOOKING NOW • GLOBAL PRODUCTION PONOROGO •
+                    <div className="p-4 sm:p-5 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-gold/20 rounded-full flex items-center justify-center">
+                          <IconLocation />
+                        </div>
+                        <div>
+                          <p className="font-body text-xs sm:text-sm text-white">RT.03/RW.01, karangasri, Karanggebang, Kec. Jetis, Kabupaten Ponorogo, Jawa Timur 63473</p>
+                          <p className="font-body text-xs text-warmGray">Ponorogo, Indonesia</p>
+                        </div>
+                      </div>
+                      <a 
+                        href="https://maps.google.com/?q=GLOBAL+PRODUCTION" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="btn-primary bg-gold text-cream px-4 py-2 rounded-full font-body text-xs sm:text-sm font-medium flex items-center gap-1"
+                      >
+                        Buka Maps
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
                     </div>
+                  </div>
                 </div>
-            </footer>
-        </div>
-
-    </div>
-
-    <!-- CONTROLS -->
-    <div class="slider-controls">
-        <button class="ctrl-btn" onclick="toggleAuto()" id="autoBtn"><i class="fas fa-pause"></i></button>
-        <div class="dots-container">
-            <div class="dot active" onclick="manualSlide(0)"></div>
-            <div class="dot" onclick="manualSlide(1)"></div>
-            <div class="dot" onclick="manualSlide(2)"></div>
-            <div class="dot" onclick="manualSlide(3)"></div>
-        </div>
-        <div class="d-flex gap-2">
-            <button class="ctrl-btn" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-            <button class="ctrl-btn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </div>
-
-    <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/+628234221967?text=Halo%20Global%20Production%20Ponorogo%2C%20Saya%20ingin%20bertanya%20tentang%20layanan%3A%0A%0A-%20Sound%20System%0A-%20Syuting%0A-%20Multimedia%0A-%20Event%20Organizer%0A-%20Lighting%0A-%20Stage%0A-%20Rigging%0A-%20Panggung" class="wa-float">
-        <i class="fab fa-whatsapp" style="text-decoration-line: none;"></i>
-    </a>
-
-    <!-- MODAL -->
-    <div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header border-bottom-0 pb-0">
-                    <h3 class="modal-title fw-bold" id="modalTitle">Service Name</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="modalDesc" class="text-muted">Description goes here.</p>
-                    <div class="bg-light p-3 rounded mt-4">
-                        <small class="fw-bold text-uppercase text-dark d-block mb-2">Why Choose Us?</small>
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="fas fa-check-circle text-warning me-2"></i> <span>Peralatan Original & Terawat</span>
+                
+                <div className="animate-fadeInUp stagger-3">
+                  <h3 className="font-display text-base sm:text-lg text-white mb-3 sm:mb-4">Testimoni Klien</h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    {testimonials.map((testi, index) => (
+                      <div key={testi.id} className="bg-white/5 rounded-lg sm:rounded-xl p-4 sm:p-5 border border-gold/10">
+                        <div className="flex gap-1 mb-2 sm:mb-3">
+                          {[...Array(testi.rating)].map((_, i) => (
+                            <IconStar key={i} filled={true} />
+                          ))}
                         </div>
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="fas fa-check-circle text-warning me-2"></i> <span>Tim Teknisi Berpengalaman</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-check-circle text-warning me-2"></i> <span>Harga Kompetitif & Transparan</span>
-                        </div>
-                    </div>
+                        <p className="font-body text-warmGray text-xs sm:text-sm italic mb-2 sm:mb-3 line-clamp-2">"{testi.text}"</p>
+                        <p className="font-body text-gold text-xs sm:text-sm font-medium">- {testi.name}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div class="modal-footer border-top-0">
-                    <button type="button" class="btn btn-light rounded-pill" data-bs-dismiss="modal">Tutup</button>
-                    <a href="https://wa.me/+628234221967?text=Halo%20Global%20Production%20Ponorogo%2C%20Saya%20ingin%20bertanya%20tentang%20layanan%3A%0A%0A-%20Sound%20System%0A-%20Syuting%0A-%20Multimedia%0A-%20Event%20Organizer%0A-%20Lighting%0A-%20Stage%0A-%20Rigging%0A-%20Panggung" class="btn btn-aesthetic rounded-pill px-4">Tanya via WA</a>
-                </div>
+              </div>
             </div>
-        </div>
-    </div>
+            
+            <div className="mt-16 sm:mt-20 pt-6 sm:pt-8 border-t border-gold/20 flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gold/20 flex items-center justify-center">
+                  <span className="font-display text-gold text-sm sm:text-base font-bold">G</span>
+                </div>
+                <span className="font-display text-base sm:text-lg text-white">Global<span className="text-gold">Production</span></span>
+              </div>
+              
+              <p className="font-body text-xs sm:text-sm text-warmGray">2024 TA Kelompok 7. All rights reserved.</p>
+              
+              <div className="flex gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
+                {/* TikTok */}
+                <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center text-gold hover:bg-gold hover:text-cream transition-all duration-300" aria-label="TikTok">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                  </svg>
+                </a>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+                {/* Instagram */}
+                <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center text-gold hover:bg-gold hover:text-cream transition-all duration-300" aria-label="Instagram">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </a>
+
+                {/* YouTube */}
+                <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center text-gold hover:bg-gold hover:text-cream transition-all duration-300" aria-label="YouTube">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+
+                {/* Facebook */}
+                <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center text-gold hover:bg-gold hover:text-cream transition-all duration-300" aria-label="Facebook">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+
+                {/* WhatsApp */}
+                <a href="#" className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center text-gold hover:bg-gold hover:text-cream transition-all duration-300" aria-label="WhatsApp">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+    
+    // Main App
+    const App = () => {
+      const [currentPage, setCurrentPage] = useState(0);
+      const [isScrolled, setIsScrolled] = useState(false);
+      const [isTransitioning, setIsTransitioning] = useState(false);
+      const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+      
+      useEffect(() => { const handleScroll = () => setIsScrolled(window.scrollY > 50); window.addEventListener('scroll', handleScroll); return () => window.removeEventListener('scroll', handleScroll); }, []);
+      
+      const handlePageChange = (pageIndex) => {
+        if (pageIndex !== currentPage && !isTransitioning) {
+          setIsTransitioning(true);
+          setIsMobileMenuOpen(false);
+          setTimeout(() => { setCurrentPage(pageIndex); setIsTransitioning(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }, 300);
+        }
+      };
+      
+      const pages = [<HeroSection key="hero" setCurrentPage={handlePageChange} />, <ServicesSection key="services" />, <PortfolioSection key="portfolio" />, <ContactSection key="contact" />];
+      
+      return (
+        <div className="min-h-screen bg-cream">
+          <Navigation currentPage={currentPage} setCurrentPage={handlePageChange} isScrolled={isScrolled} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+          <div className={`transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>{pages[currentPage]}</div>
+          <MobileSlideNav currentPage={currentPage} setCurrentPage={handlePageChange} />
+        </div>
+      );
+    };
+    
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>
