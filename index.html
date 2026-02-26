@@ -211,77 +211,149 @@
     // Hero Section
     const HeroSection = ({ setCurrentPage }) => {
       const [isVisible, setIsVisible] = useState(false);
+      
       useEffect(() => { setIsVisible(true); }, []);
       
       return (
-        <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-cream via-champagne/30 to-softPink/40 pb-24 lg:pb-0">
+        <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-cream via-champagne/30 to-softPink/40 pb-28 lg:pb-0">
           <div className="absolute inset-0 pattern-dots opacity-30" />
-          <div className="absolute top-20 left-10 w-32 h-32 bg-gold/10 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-40 right-20 w-40 h-40 bg-sage/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
           
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-20 min-h-screen flex items-center">
+          {/* Decorative Blobs - Adjusted for mobile */}
+          <div className="absolute top-10 left-0 w-40 h-40 bg-gold/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-0 w-48 h-48 bg-sage/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gold/5 rounded-full blur-3xl" />
+          
+          {/* Decorative Lines */}
+          <div className="absolute top-1/4 left-0 w-48 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent hidden sm:block" />
+          <div className="absolute bottom-1/3 right-0 w-64 h-px bg-gradient-to-l from-transparent via-gold/50 to-transparent hidden sm:block" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 min-h-screen flex flex-col justify-center">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
-              <div className={`space-y-6 sm:space-y-8 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
-                <div className="inline-flex items-center gap-2 bg-gold/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+              
+              {/* Left Content */}
+              <div className={`space-y-6 sm:space-y-8 text-center lg:text-left ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
+                <div className="inline-flex items-center gap-2 bg-gold/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mx-auto lg:mx-0">
                   <div className="w-2 h-2 bg-gold rounded-full animate-pulse" />
                   <span className="font-body text-xs sm:text-sm text-goldDark font-medium">Wedding & Event Specialist</span>
                 </div>
                 
-                <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-charcoal leading-tight">
-                  Wujudkan<span className="block text-gold">Momen Indah</span><span className="block text-2xl sm:text-3xl md:text-4xl font-normal italic mt-2 text-warmGray">Anda</span>
+                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-charcoal leading-tight">
+                  Wujudkan
+                  <span className="block text-gold">Momen Indah</span>
+                  <span className="block text-2xl sm:text-3xl md:text-4xl font-normal italic mt-2 text-warmGray">Anda</span>
                 </h1>
                 
-                <p className="font-body text-base sm:text-lg text-warmGray max-w-lg leading-relaxed">
+                <p className="font-body text-base sm:text-lg text-warmGray max-w-lg leading-relaxed mx-auto lg:mx-0">
                   Layanan Wedding Organizer dan Sewa Sound System profesional dengan sentuhan elegan untuk hari spesial Anda.
                 </p>
                 
-                <div className="flex flex-wrap gap-3 sm:gap-4">
+                <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
                   <button onClick={() => setCurrentPage(1)} className="btn-primary bg-gold text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-full font-body text-sm sm:base font-medium inline-flex items-center gap-2">
-                    Lihat Layanan<IconArrow direction="right" className="w-4 h-4 sm:w-5 sm:h-5" />
+                    Lihat Layanan <IconArrow direction="right" className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                   <button onClick={() => setCurrentPage(2)} className="border-2 border-gold text-gold px-6 sm:px-8 py-3 sm:py-4 rounded-full font-body text-sm sm:text-base font-medium hover:bg-gold hover:text-cream transition-all duration-300">
                     Portfolio
                   </button>
                 </div>
                 
-                <div className="flex gap-8 sm:gap-12 pt-6 sm:pt-8 border-t border-gold/20">
-                  <div className="text-center"><span className="font-display text-3xl sm:text-4xl font-bold text-gold">500+</span><p className="font-body text-xs sm:text-sm text-warmGray mt-1">Event Sukses</p></div>
-                  <div className="text-center"><span className="font-display text-3xl sm:text-4xl font-bold text-gold">8+</span><p className="font-body text-xs sm:text-sm text-warmGray mt-1">Tahun</p></div>
-                  <div className="text-center"><span className="font-display text-3xl sm:text-4xl font-bold text-gold">100%</span><p className="font-body text-xs sm:text-sm text-warmGray mt-1">Kepuasan</p></div>
+                {/* Stats - Updated for mobile */}
+                <div className="flex gap-6 sm:gap-8 lg:gap-12 pt-6 sm:pt-8 border-t border-gold/20 justify-center lg:justify-start">
+                  <div className="text-center">
+                    <span className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gold">500+</span>
+                    <p className="font-body text-xs sm:text-sm text-warmGray mt-1">Event Sukses</p>
+                  </div>
+                  <div className="text-center">
+                    <span className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gold">8+</span>
+                    <p className="font-body text-xs sm:text-sm text-warmGray mt-1">Tahun</p>
+                  </div>
+                  <div className="text-center">
+                    <span className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gold">100%</span>
+                    <p className="font-body text-xs sm:text-sm text-warmGray mt-1">Kepuasan</p>
+                  </div>
                 </div>
-              </div>
-              
-              {/* HERO IMAGE CONTAINER */}
-              <div className={`relative hidden lg:block ${isVisible ? 'animate-fadeInUp stagger-2' : 'opacity-0'}`}>
-                <div className="relative w-full aspect-square max-w-lg mx-auto">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-champagne to-sage/20 rounded-full" />
-                  <div className="absolute inset-8 bg-cream rounded-full shadow-2xl overflow-hidden">
-                    {/* Ganti konten dummy dengan tag IMG */}
-                    <img 
-                      src={heroImage} 
-                      alt="Wedding Hero" 
-                      className="w-full h-full object-cover"
-                      onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
-                    />
-                    {/* Fallback jika gambar tidak ditemukan */}
-                    <div className="absolute inset-0 flex-col items-center justify-center bg-cream hidden">
-                        <div className="w-24 h-24 mx-auto mb-4 bg-gold/20 rounded-full flex items-center justify-center">
-                            <IconRings />
+                
+                {/* NEW: Mobile Visual Elements (Hidden on Desktop) */}
+                <div className="lg:hidden pt-6 space-y-6">
+                  {/* Decorative Hero Image for Mobile */}
+                  <div className="relative w-48 h-48 mx-auto">
+                    <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-champagne to-sage/20 rounded-full animate-scaleIn" style={{animationDelay: '0.3s'}} />
+                    <div className="absolute inset-4 bg-cream rounded-full shadow-xl flex items-center justify-center overflow-hidden">
+                      <div className="text-center p-4">
+                        <div className="w-14 h-14 mx-auto mb-2 bg-gold/20 rounded-full flex items-center justify-center text-gold">
+                          <IconRings />
                         </div>
-                        <p className="font-body text-sm text-warmGray">Gambar tidak ditemukan</p>
+                        <p className="font-display text-base text-charcoal italic">Your Perfect Day</p>
+                        <p className="font-body text-xs text-warmGray">Starts Here</p>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="absolute top-10 right-0 bg-white p-4 rounded-xl shadow-lg animate-float z-10" style={{animationDelay: '1s'}}>
+                  {/* Floating Cards for Mobile */}
+                  <div className="grid grid-cols-2 gap-3 animate-fadeInUp" style={{animationDelay: '0.5s'}}>
+                    <div className="bg-white p-3 rounded-xl shadow-lg flex items-center gap-3 hover:shadow-xl transition-shadow">
+                      <div className="w-10 h-10 bg-sage/30 rounded-full flex items-center justify-center text-charcoal flex-shrink-0">
+                        <IconSpeaker />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-body text-xs text-warmGray truncate">Sound System</p>
+                        <p className="font-body text-sm font-semibold text-charcoal truncate">Premium</p>
+                      </div>
+                    </div>
+                    <div className="bg-white p-3 rounded-xl shadow-lg flex items-center gap-3 hover:shadow-xl transition-shadow">
+                      <div className="w-10 h-10 bg-gold/20 rounded-full flex items-center justify-center text-gold flex-shrink-0">
+                        <IconDecoration />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-body text-xs text-warmGray truncate">Decoration</p>
+                        <p className="font-body text-sm font-semibold text-charcoal truncate">Elegant</p>
+                      </div>
+                    </div>
+                    <div className="bg-white p-3 rounded-xl shadow-lg flex items-center gap-3 hover:shadow-xl transition-shadow">
+                      <div className="w-10 h-10 bg-softPink/50 rounded-full flex items-center justify-center text-goldDark flex-shrink-0">
+                        <IconLighting />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-body text-xs text-warmGray truncate">Lighting</p>
+                        <p className="font-body text-sm font-semibold text-charcoal truncate">Design Pro</p>
+                      </div>
+                    </div>
+                    <div className="bg-white p-3 rounded-xl shadow-lg flex items-center gap-3 hover:shadow-xl transition-shadow">
+                      <div className="w-10 h-10 bg-champagne rounded-full flex items-center justify-center text-charcoal flex-shrink-0">
+                        <IconEvent />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-body text-xs text-warmGray truncate">Event Org.</p>
+                        <p className="font-body text-sm font-semibold text-charcoal truncate">Profesional</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* END Mobile Visual Elements */}
+              </div>
+              
+              {/* Right Content (Desktop Visual) */}
+              <div className={`relative hidden lg:block ${isVisible ? 'animate-fadeInUp stagger-2' : 'opacity-0'}`}>
+                <div className="relative w-full aspect-square max-w-lg mx-auto">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-champagne to-sage/20 rounded-full" />
+                  <div className="absolute inset-8 bg-cream rounded-full shadow-2xl flex items-center justify-center overflow-hidden">
+                    <div className="text-center p-8">
+                      <div className="w-24 h-24 mx-auto mb-4 bg-gold/20 rounded-full flex items-center justify-center">
+                        <IconRings />
+                      </div>
+                      <p className="font-display text-2xl text-charcoal italic">Your Perfect Day</p>
+                      <p className="font-body text-sm text-warmGray mt-2">Starts Here</p>
+                    </div>
+                  </div>
+                  <div className="absolute top-10 right-0 bg-white p-4 rounded-xl shadow-lg animate-float" style={{animationDelay: '1s'}}>
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-sage/30 rounded-full flex items-center justify-center"><IconSpeaker /></div>
                       <div><p className="font-body text-xs text-warmGray">Sound System</p><p className="font-body text-sm font-semibold text-charcoal">Premium Quality</p></div>
                     </div>
                   </div>
-                  <div className="absolute bottom-10 left-0 bg-white p-4 rounded-xl shadow-lg animate-float z-10" style={{animationDelay: '3s'}}>
+                  <div className="absolute bottom-10 left-0 bg-white p-4 rounded-xl shadow-lg animate-float" style={{animationDelay: '3s'}}>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gold/20 rounded-full flex items-center justify-center"><IconLighting /></div>
-                      <div><p className="font-body text-xs text-warmGray">Lighting</p><p className="font-body text-sm font-semibold text-charcoal">Design Pro</p></div>
+                      <div className="w-10 h-10 bg-gold/20 rounded-full flex items-center justify-center"><IconDecoration /></div>
+                      <div><p className="font-body text-xs text-warmGray">Decoration</p><p className="font-body text-sm font-semibold text-charcoal">Elegant Design</p></div>
                     </div>
                   </div>
                 </div>
